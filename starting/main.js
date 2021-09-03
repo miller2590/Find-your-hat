@@ -18,10 +18,22 @@ class Field {
 
     print() {
         // prints current state of the field
+        console.log(this.field);
     }
 
-    static generaterfield(height, width) {
-        // return 2 dimensional array representing the field
+    static generateField(height, width, percentage = 0.1) {
+        const field = new Array(height).fill(0).map(el => new Array(width));
+        for (let y = 0; y < height; y++) {
+          for (let x = 0; x < width; x++) {
+            const prob = Math.random();
+            field[y][x] = prob > percentage ? fieldCharacter : hole;
+          }
+        }
+        return field;
     }
 
 }
+
+const prac = new Field(Field.generateField(10, 5, 0.4));
+
+prac.print();
