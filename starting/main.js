@@ -41,7 +41,7 @@ class Field {
     let hatPointY = Math.floor(Math.random() * height);
 
     // Make sure hat point isn't player starting point
-    while (hatPointX && hatPointY == 0) {
+    while (hatPointX === 0 && hatPointY === 0) {
       hatPointX = Math.floor(Math.random() * width);
       hatPointY = Math.floor(Math.random() * height);
     }
@@ -51,6 +51,6 @@ class Field {
   }
 }
 
-const prac = new Field(Field.generateField(10, 10, 0.2));
+const prac = new Field(Field.generateField(3, 3, 0.1));
 
 prac.print();
