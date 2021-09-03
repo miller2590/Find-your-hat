@@ -32,7 +32,17 @@ class Field {
             field[y][x] = prob > percentage ? fieldCharacter : hole;
           }
         }
+        
+
+        // Set Hat point
+
+        let hatPointX = Math.floor(Math.random() * width);
+        let hatPointY = Math.floor(Math.random() * height);
+        console.log(hatPointY, hatPointX)
+        field[hatPointY][hatPointX] = hat;
         return field;
+        
+
     }
 
 }
