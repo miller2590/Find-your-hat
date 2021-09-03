@@ -18,14 +18,17 @@ class Field {
 
     print() {
         // prints current state of the field
-        console.log(this.field);
+        const viewField = this.field.map(x => {
+          return x.join('');
+        }).join('\n');
+        console.log(viewField);
     }
 
-    static generateField(height, width, percentage = 0.1) {
+    static generateField(height, width, percentage) {
         const field = new Array(height).fill(0).map(el => new Array(width));
         for (let y = 0; y < height; y++) {
           for (let x = 0; x < width; x++) {
-            const prob = Math.random();
+            let prob = Math.random();
             field[y][x] = prob > percentage ? fieldCharacter : hole;
           }
         }
@@ -34,6 +37,6 @@ class Field {
 
 }
 
-const prac = new Field(Field.generateField(10, 5, 0.4));
+const prac = new Field(Field.generateField(10, 5, 0.2));
 
 prac.print();
