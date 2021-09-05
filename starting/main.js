@@ -17,6 +17,7 @@ class Field {
   // Field Methods
 
   runGame() {
+    // Creates Game loop and checks if player is in bounds, in hole, or found hat
     let playing = true;
     while (playing) {
       this.print();
@@ -36,26 +37,26 @@ class Field {
       }
       this.field[this.locationY][this.locationX] = pathCharacter;
     }
-
   }
 
   playerChoice() {
+    // Asks player to choose direction of movement
     const choice = prompt("Choose your path: U, D, L, R: ").toUpperCase();
     switch (choice) {
-      case 'U':
+      case "U":
         this.locationY -= 1;
         break;
-      case 'D':
+      case "D":
         this.locationY += 1;
         break;
-      case 'L':
+      case "L":
         this.locationX -= 1;
         break;
-      case 'R':
+      case "R":
         this.locationX += 1;
         break;
       default:
-        console.log('Enter U, D, L or R.');
+        console.log("Enter U, D, L or R.");
         this.playerChoice();
         break;
     }
@@ -69,7 +70,7 @@ class Field {
       this.locationX < this.field[0].length
     );
   }
-  
+
   isHat() {
     return this.field[this.locationY][this.locationX] === hat;
   }
@@ -77,7 +78,7 @@ class Field {
   isHole() {
     return this.field[this.locationY][this.locationX] === hole;
   }
-  
+
   print() {
     // prints current state of the field
     const viewField = this.field
