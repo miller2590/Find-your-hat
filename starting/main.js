@@ -16,6 +16,51 @@ class Field {
 
   // Field Methods
 
+  runGame() {
+    let playing = true;
+
+
+  }
+
+  playerChoice() {
+    const choice = prompt("Choose your path: U, D, L, R: ").toUpperCase();
+    switch (answer) {
+      case 'U':
+        this.locationY -= 1;
+        break;
+      case 'D':
+        this.locationY += 1;
+        break;
+      case 'L':
+        this.locationX -= 1;
+        break;
+      case 'R':
+        this.locationX += 1;
+        break;
+      default:
+        console.log('Enter U, D, L or R.');
+        this.askQuestion();
+        break;
+    }
+  }
+
+  inBounds() {
+    return (
+      this.locationY >= 0 &&
+      this.locationX >= 0 &&
+      this.locationY < this.field.length &&
+      this.locationX < this.field[0].length
+    );
+  }
+  
+  isHat() {
+    return this.field[this.locationY][this.locationX] === hat;
+  }
+
+  isHole() {
+    return this.field[this.locationY][this.locationX] === hole;
+  }
+  
   print() {
     // prints current state of the field
     const viewField = this.field
@@ -51,6 +96,6 @@ class Field {
   }
 }
 
-const prac = new Field(Field.generateField(3, 3, 0.1));
+const prac = new Field(Field.generateField(10, 10, 0.1));
 
 prac.print();
