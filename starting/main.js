@@ -18,13 +18,30 @@ class Field {
 
   runGame() {
     let playing = true;
-
+    while (playing) {
+      this.print();
+      this.playerChoice();
+      if (!this.inBounds()) {
+        console.log("Sorry, you are out of bounds!");
+        playing = false;
+        break;
+      } else if (this.isHole()) {
+        console.log("Sorry, you fell into a hole!");
+        playing = false;
+        break;
+      } else if (this.isHat()) {
+        console.log("You have found your hat. You win!");
+        playing = false;
+        break;
+      }
+      this.field[this.locationY][this.locationX] = pathCharacter;
+    }
 
   }
 
   playerChoice() {
     const choice = prompt("Choose your path: U, D, L, R: ").toUpperCase();
-    switch (answer) {
+    switch (choice) {
       case 'U':
         this.locationY -= 1;
         break;
@@ -39,7 +56,7 @@ class Field {
         break;
       default:
         console.log('Enter U, D, L or R.');
-        this.askQuestion();
+        this.playerChoice();
         break;
     }
   }
@@ -98,4 +115,4 @@ class Field {
 
 const prac = new Field(Field.generateField(10, 10, 0.1));
 
-prac.print();
+prac.runGame();
